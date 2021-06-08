@@ -1,0 +1,7 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>Profile</h1>
+{% for post in post_obj %}
+    {{post.title}}
+{% endfor %}
+{% endblock content %}
