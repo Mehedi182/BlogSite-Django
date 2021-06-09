@@ -7,9 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.models import User
 from .forms import CreateUserForm
-from .models import Post,User
+from .models import Post
 
 
 class PostList(LoginRequiredMixin, ListView):
@@ -24,8 +23,22 @@ class PostDetail(LoginRequiredMixin, DetailView):
 
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
-    fields = '__all__'
+    fields = ['title','intro','description', 'img']
     success_url = reverse_lazy('posts')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PostCreate, self).form_valid(form)
+
+
+class TaskCreate(LoginRequiredMixin,CreateView):
+    model = Post
+    fields =['title','description']
+    success_url = reverse_lazy('posts')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate,self).form_valid(form)
 
 
 class UserLoginView(LoginView):
