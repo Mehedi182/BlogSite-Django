@@ -1,7 +1,17 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<h1>Profile</h1>
-{% for post in post_obj %}
-    {{post.title}}
+<h1>Welcome To your profile {{request.user.first_name}}</h1>
+<a href="{% url 'profile-edit' %}">Update your profile</a><br>
+Your Blog
+<hr>
+{% for post in posts %}
+    <h3>{{post.title}}</h3>
+<h4>Written at {{post.date}}</h4>
+<img src="{{post.img}}" alt="" width="200" height="200"> <br>
+<b>{{post.intro}}</b><a href="{% url 'post' post.id %}">(Read more...)</a>
+<!--{{post.description}}-->
+<br>
+
 {% endfor %}
+
 {% endblock content %}

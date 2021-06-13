@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<img src="ogo.png" alt="">
+<!--
 {% if request.user.is_authenticated %}
 <p>{{request.user}}</p>
 <a href="{% url 'logout' %}">Logout</a>
@@ -9,16 +9,35 @@
 {% endif %}
 <br>
 <a href="{% url 'post-create' %}">Create a Post</a>
-
+-->
+<style>
+    .date{
+    color:#67CB32;
+    }
+    .title{
+    color:#3290CB
+    }
+    .a{
+    text-decoration: none;
+    }
+</style>
+<h3>MH Blogs</h3>
+<p style="margin-top:-32px;margin-left:130px;">(Write your thoughts)</p>
 <hr>
-<h1>Blog Site</h1>
+<center>
 {% for post in posts %}
-    <h3>{{post.title}}</h3>
-<h4>Posted at {{post.date}}</h4>
-<img src="{{post.img}}" alt="" width="200" height="200"> <br>
-<b>{{post.intro}}</b><a href="{% url 'post' post.id %}">(Read more...)</a>
+    <h3 class="title">{{post.title}}</h3>
+
+<i class="date">Written at {{post.date}}</i><br>
+
+<img class="img-fluid rounded img-thumbnail" src="{{post.img}}" alt="" width="400"> <br>
+<b>{{post.intro}} </b><a href="{% url 'post' post.id %}">(Read more...)</a>
 <!--{{post.description}}-->
-<br>
+    <br><i>Written by</i> <a class="link-danger a" href="">{{post.user.first_name }} {{post.user.last_name }}</a>
+<br><br>
+<hr>
+
 
 {% endfor %}
+    </center>
 {% endblock content %}

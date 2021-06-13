@@ -13,17 +13,18 @@
 <!--    margin-left: 500px;-->
 <!--    }-->
 
-</style>
+
+    </style>
 
 </head>
 <body>
 
-    <!--NAv -->
+<!--NAv -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img src="{% static 'img/logo.png' %}" height="70" width="100">
+    <img src="{% static 'img/logo.png' %}" height="70" width="150">
 
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Home</a>
+        <a class="navbar-brand" href="{% url 'posts'%}">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,22 +35,26 @@
                     <a class="nav-link active" aria-current="page" href="#">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Writers</a>
+                    <a class="nav-link" href="#">Contact us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Help</a>
                 </li>
+
+
                 <li class="nav-item">
-                    <div class="dropdown dpp ">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-            aria-expanded="false">
-        {{request.user}}
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="{% url 'profile'%}">Profile</a></li>
-        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-    </ul>
-</div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            {{request.user.first_name}}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item"  href="{% url 'profile'%}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'post-create'%}">Write a Blog</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
                 </li>
 
             </ul>
@@ -59,14 +64,14 @@
 <!--Nav-->
 <div class="container-fluid">
 
-<div class="" style="margin-top:100 ">
-    {% block content %}
+    <div class="">
+        {% block content %}
 
 
-    {% endblock content %}
+        {% endblock content %}
+    </div>
 </div>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
 </body>

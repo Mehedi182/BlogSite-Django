@@ -5,4 +5,11 @@
 <img src="{{post.img}}" alt="" width="200" height="200">
 <br>
 {{post.description}}
+
+  <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+          <input type="submit" value="Comment">
+
+    </form>
 {% endblock content %}
