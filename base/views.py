@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login
 from .forms import CommentForm,CreateUserForm,UserUpdateForm
-from .models import Post
+from .models import Post,Comment
 
 
 class PostList(LoginRequiredMixin, ListView):
@@ -19,6 +19,11 @@ class PostList(LoginRequiredMixin, ListView):
 class PostDetail(LoginRequiredMixin, DetailView):
     model = Post
     context_object_name = 'post'
+
+    class Meta:
+        """form settings"""
+        model = Comment
+        fields = ('user', 'username', 'post', 'comment',)
 
 
 class PostCreate(LoginRequiredMixin, CreateView):
@@ -108,7 +113,7 @@ def profileUpdate(request):
 
 def comment(request,slug):
     if request.user.is_authenticated:
-        post= Post.objects.get(slug=slug)
+        post = Post.objects.get(slug=slug)
 
         if request.method == 'POST':
             form = CommentForm(request.POST)
@@ -126,4 +131,7 @@ def comment(request,slug):
     else:
         return redirect('post')
 
-    return render(request, 'base/post_detail.html',{'post': post, 'form': form})
+    return render(request, 'base/test.html',{'form': form})
+
+def test(request):
+    return render(request, 'base/test.html')

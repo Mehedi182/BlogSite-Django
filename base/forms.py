@@ -7,11 +7,10 @@ class CreateUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
-    image = forms.ImageField(required=False)
 
     class Meta:
         model = User
-        fields = ("username", "email", "first_name", "last_name", "password1", "password2","image")
+        fields = ("username", "email", "first_name", "last_name", "password1", "password2"  )
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=False)
