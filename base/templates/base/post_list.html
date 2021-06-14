@@ -31,13 +31,71 @@
 <i class="date">Written at {{post.date}}</i><br>
 
 <img class="img-fluid rounded img-thumbnail" src="{{post.img}}" alt="" width="400"> <br>
-<b>{{post.intro}} </b><a href="{% url 'post' post.id %}">(Read more...)</a>
+<b>{{post.intro}} </b><a href="{% url 'post_detail' post.slug %}">(Read more...)</a>
 <!--{{post.description}}-->
-    <br><i>Written by</i> <a class="link-danger a" href="">{{post.user.first_name }} {{post.user.last_name }}</a>
+    <br><i>Written by</i> <a class="link-danger a" href="{% url 'writters' post.user.id %}">{{post.user.first_name }} {{post.user.last_name }}</a>
 <br><br>
 <hr>
 
 
 {% endfor %}
     </center>
+<div class="background" id="contact">
+  <div class="container">
+    <div class="screen">
+      <div class="screen-header">
+        <div class="screen-header-left">
+          <div class="screen-header-button close"></div>
+          <div class="screen-header-button maximize"></div>
+          <div class="screen-header-button minimize"></div>
+        </div>
+        <div class="screen-header-right">
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+        </div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-body-item left">
+          <div class="app-title">
+            <span>CONTACT</span>
+            <span>US</span>
+          </div>
+          <div class="app-contact">CONTACT INFO : +88018594208..</div>
+        </div>
+        <div class="screen-body-item">
+          <div class="app-form">
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="NAME" value="Mehedi Hasan">
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="EMAIL">
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="CONTACT NO">
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="MESSAGE">
+            </div>
+            <div class="app-form-group buttons">
+              <button class="app-form-button">CANCEL</button>
+                                <a href="{% url 'posts' %}">
+              <button class="app-form-button">SEND</button>
+                                    </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="credits">
+      All Right Reserved ©
+      <a class="credits-link" href="https://www.facebook.com/huntermehedihasan/" target="_blank">
+
+       Mehedi Hasan
+      </a>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}

@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login
 from .forms import CommentForm,CreateUserForm,UserUpdateForm
-from .models import Post,Comment
+from .models import Post,Comment,User
 
 
 class PostList(LoginRequiredMixin, ListView):
@@ -16,14 +16,7 @@ class PostList(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
 
 
-class PostDetail(LoginRequiredMixin, DetailView):
-    model = Post
-    context_object_name = 'post'
 
-    class Meta:
-        """form settings"""
-        model = Comment
-        fields = ('user', 'username', 'post', 'comment',)
 
 
 class PostCreate(LoginRequiredMixin, CreateView):
@@ -53,6 +46,7 @@ class Profile(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['posts'] = context['posts'].filter(user=self.request.user)
+        context['count'] = context['posts'].filter(user=self.request.user).count()
         return context
 
 
@@ -111,27 +105,25 @@ def profileUpdate(request):
     return render(request, 'base/profile_edit.html', context)
 
 
-def comment(request,slug):
-    if request.user.is_authenticated:
-        post = Post.objects.get(slug=slug)
+class UserDetail(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'base/user_detail.html'
+    context_object_name = 'user'
 
-        if request.method == 'POST':
-            form = CommentForm(request.POST)
 
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.post =  post
-                comment.save()
+def post_detail(request, slug):
+    post = Post.objects.get(slug=slug)
 
-                return redirect('post', slug=post.slug)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
 
-        else:
-            form = CommentForm()
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
 
+            return redirect('post_detail', slug=post.slug)
     else:
-        return redirect('post')
+        form = CommentForm()
 
-    return render(request, 'base/test.html',{'form': form})
-
-def test(request):
-    return render(request, 'base/test.html')
+    return render(request, 'base/post_detail.html', {'post': post, 'form': form})
