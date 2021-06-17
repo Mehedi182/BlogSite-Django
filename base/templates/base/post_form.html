@@ -1,11 +1,12 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<a href="{% url 'posts' %}">
-<button>Go back</button>
-</a>
+<title>    mhBlogs | Write Blog
+</title>
+<br>
 <form action="" method="POST">
     {%csrf_token%}
     {{ form.as_p }}
-    <input type="submit" value="Submit">
+    <small><i>Enter Image Url in <b>img</b> field</i></small> <br> <br>
+    <input class="btn btn-success" type="submit" value="Submit">
 </form>
 {% endblock content %}

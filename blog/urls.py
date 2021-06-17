@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('base.urls')),
     path('admin/', admin.site.urls),
 ]
+admin.site.site_header=" MhBlogs Administrator"
 

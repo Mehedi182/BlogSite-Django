@@ -128,4 +128,3 @@ STATICFILES_DIRS = [
     # '/var/www/static/',
 
 ]
-

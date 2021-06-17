@@ -1,17 +1,26 @@
 {% extends 'base/base.html' %}
 {% block content %}
+<title>    mhBlogs | Profile
+</title>
 <h1>Welcome To your profile {{request.user.first_name}}</h1>
+ {% for message in messages %}
+        {{message}}
+{% endfor %} <br>
 <a href="{% url 'profile-edit' %}">Update your profile</a><br>
-Your Blog
+Your Blogs
 <hr>
+<center>
 {% for post in posts %}
     <h3>{{post.title}}</h3>
-<h4>Written at {{post.date}}</h4>
-<img src="{{post.img}}" alt="" width="200" height="200"> <br>
-<b>{{post.intro}}</b><a href="{% url 'post' post.id %}">(Read more...)</a>
+<small>Written at {{post.date}}</small> <br>
+
+    <img  class="img-fluid rounded img-thumbnail" src="{{post.img}}" alt="" width="500"> <br>
+<b>{{post.intro}} </b><a href="{% url 'post_detail' post.pk %}">(Read more...)</a>
 <!--{{post.description}}-->
 <br>
-
+    <hr>
+{% empty %}
+<strong> You didn't wrote any blogs yet</strong>
 {% endfor %}
-
+</center>
 {% endblock content %}

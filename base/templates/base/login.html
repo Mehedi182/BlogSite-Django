@@ -1,8 +1,10 @@
+{% load static %}
 <html>
 <title>
-
+    mhBlogs | Login
 </title>
 <head>
+    <link rel="icon" href="{% static 'img/logo.png' %}">
     <style>
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
@@ -278,7 +280,7 @@ footer a {
     {% for message in messages %}
         {{message}}
     {% endfor %}
-            <a href="#">Forgot your password?</a>
+
         </form>
     </div>
     <div class="overlay-container">

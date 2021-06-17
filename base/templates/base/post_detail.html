@@ -1,22 +1,26 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <h1 class="title">{{ post.title }}</h1>
+<title>    mhBlogs | Blogs
+</title>
+<center>
+    <h1 class="">{{ post.title }}</h1>
 
     <small>Posted at {{ post.date }}</small>
 
     <p><strong>{{ post.intro }}</strong></p>
+    <img  class="img-fluid rounded img-thumbnail" src="{{post.img}}" alt="" width="500" >
 
     <p>{{ post.description }}</p>
 
     <hr>
-
-    <h2 class="subtitle">Comments</h2>
+</center>
+    <h2 class="">Comments</h2>
 
     {% for comment in post.comments.all %}
-        <article class="media">
-            <div class="media-content">
-                <div class="content">
+        <article class="">
+            <div class="">
+                <div class="">
                     <p>
                         <strong>{{ comment.name }}</strong> <small>{{ comment.date_added }}</small>
                         <br>
@@ -26,7 +30,7 @@
             </div>
         </article>
     {% empty %}
-        <div class="notification">
+        <div class="">
             <p>No comments yet!</p>
         </div>
     {% endfor %}
@@ -40,9 +44,9 @@
 
         {{ form.as_p }}
 
-        <div class="field">
-            <div class="control">
-                <button class="button is-success">Submit</button>
+        <div class="">
+            <div class="">
+                <button class="btn btn-success">Comment</button>
             </div>
         </div>
     </form>

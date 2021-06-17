@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% block content %}
+{% load static %}
 <!--
 {% if request.user.is_authenticated %}
 <p>{{request.user}}</p>
@@ -10,17 +11,12 @@
 <br>
 <a href="{% url 'post-create' %}">Create a Post</a>
 -->
-<style>
-    .date{
-    color:#67CB32;
-    }
-    .title{
-    color:#3290CB
-    }
-    .a{
-    text-decoration: none;
-    }
-</style>
+<title>    mhBlogs | Home
+</title>
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+</head>
 <h3>MH Blogs</h3>
 <p style="margin-top:-32px;margin-left:130px;">(Write your thoughts)</p>
 <hr>
@@ -31,7 +27,7 @@
 <i class="date">Written at {{post.date}}</i><br>
 
 <img class="img-fluid rounded img-thumbnail" src="{{post.img}}" alt="" width="400"> <br>
-<b>{{post.intro}} </b><a href="{% url 'post_detail' post.slug %}">(Read more...)</a>
+  <b>{{post.intro}} </b><a href="{% url 'post_detail' post.id %}">(Read more...)</a>
 <!--{{post.description}}-->
     <br><i>Written by</i> <a class="link-danger a" href="{% url 'writters' post.user.id %}">{{post.user.first_name }} {{post.user.last_name }}</a>
 <br><br>
@@ -61,7 +57,7 @@
             <span>CONTACT</span>
             <span>US</span>
           </div>
-          <div class="app-contact">CONTACT INFO : +88018594208..</div>
+          <div class="app-contact">CONTACT INFO : mehedihasan152201@gmail.com</div>
         </div>
         <div class="screen-body-item">
           <div class="app-form">
@@ -97,5 +93,20 @@
     </div>
   </div>
 </div>
+<hr>
+<div id="about" align="center">
+    <img src="{% static 'img/mh.jpg' %}" class="mh">
+    <br>
+    <strong>Mehedi Hasan</strong><br>
+    <small>CEO & Developer</small> <br>
+  <a href="https://www.facebook.com/huntermehedihasan/">
+        <i class="fa fa-facebook"> </i>
+  </a>
+   <a href="https://www.instagram.com/the_mehedi_hasan/">
+        <i class="fa fa-instagram"> </i>
+  </a>
 
+</div>
+<hr>
+<div class="copyright" align="center">Copyright ©Mehedi Hasan - mehedihasan152201@gmail.com</div>
 {% endblock content %}
