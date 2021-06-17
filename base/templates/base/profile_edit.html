@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<title>    mhBlogs | Update Profile
+</title>
+<br>
+<center>
+<form method="POST" action=""  >
+    {% csrf_token %}
+    {% for field in u_form %}
+    <center>
+        <strong>{{ field.label }} </strong><br>
+        {{ field }}
+        </center>
+    {% endfor %}
+
+    <button class="btn btn-success" type="submit">Update</button>
+</form>
+</center>
+{% endblock content %}

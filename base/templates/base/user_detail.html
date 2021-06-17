@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<title>    mhBlogs | Writer
+</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+<center>
+Username:{{user}}<br>
+First Name:{{user.first_name}}<br>
+Last Name:{{user.last_name}}<br>
+Email: {{user.email}}<br>
+</center>
+</body>
+</html>
+{% endblock %}
